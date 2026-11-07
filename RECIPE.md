@@ -100,6 +100,12 @@ center (column, gap 8)
 
 The layout sets no theme or fonts, so it follows each person's settings.
 
+Herdr lights a container's `focus` border only when a pane is inside it, and the panel shows
+terminal blocks rather than panes. So every terminal block the mod writes carries its own
+look: `radius 8`, a transparent 1px `border`, and `focus: { border: { width: 1, color:
+"accent" } }`. The block with the keyboard gets a blue outline, the same as a focused pane;
+in a split, only the active side is outlined.
+
 **Mod** (`mods/drawer/`): `main.js` draws; `sessions.js` holds the data and actions. Its
 copies are told apart by `props().role`:
 

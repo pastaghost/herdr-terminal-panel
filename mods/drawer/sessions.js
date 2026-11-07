@@ -198,17 +198,21 @@ export function markUnseen(address, on) {
 
 /** The `drawer-term` node: the selected terminal's split group side by side, one
  *  terminal, or this mod's "empty" view. */
+// Herdr only lights a node's focus border when a pane is inside it, and the panel shows
+// terminal blocks, not panes, so each block carries its own: blue while it has the keyboard.
+const FOCUS_LOOK = { radius: 8, border: { width: 1, color: "#00000000" }, focus: { border: { width: 1, color: "accent" } } };
+
 export function wantedNode() {
   const list = sessions();
   const sel = selected(list);
   if (!sel) return { id: TERM, type: "block", content: { mod: "drawer", props: { role: "empty" } } };
   const group = list.filter((t) => groupKey(t) === groupKey(sel));
-  if (group.length < 2) return { id: TERM, type: "block", content: { terminal: sel.address } };
+  if (group.length < 2) return { id: TERM, type: "block", ...FOCUS_LOOK, content: { terminal: sel.address } };
   return {
     id: TERM,
     type: "row",
     divider: { width: 1, color: "border" },
-    children: group.map((t, i) => ({ id: `${TERM}-${i}`, type: "block", content: { terminal: t.address } })),
+    children: group.map((t, i) => ({ id: `${TERM}-${i}`, type: "block", ...FOCUS_LOOK, content: { terminal: t.address } })),
   };
 }
 
