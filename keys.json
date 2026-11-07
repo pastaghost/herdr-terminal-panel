@@ -1,0 +1,10 @@
+{
+  "global": {
+    "ctrl-`": "layout.toggle:drawer",
+    "cmd-j": "layout.toggle:drawer",
+    "ctrl-shift-`": "drawer.new",
+    "cmd-\\": "drawer.split",
+    "cmd-alt-pagedown": "drawer.next",
+    "cmd-alt-pageup": "drawer.prev"
+  }
+}
